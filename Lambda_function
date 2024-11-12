@@ -9,7 +9,8 @@ from io import StringIO
 s3_client = boto3.client('s3')
 
 # Temporary hard coded AWS settings to set OS variable in lambda
-os_input_s3_cleansed_layer = os.environ['s3_cleansed_layer']
+# Environment Variables - changed db name, memory set to 150 MB, changes run time to 5 mins.  
+os_input_s3_cleansed_layer = os.environ['s3_cleansed_layer'] 
 os_input_glue_catalog_db_name = os.environ['glue_catalog_db_name']
 os_input_glue_catalog_table_name = os.environ['glue_catalog_table_name']
 os_input_write_data_operation = os.environ['write_data_operation']
