@@ -1,0 +1,20 @@
+#Filter results by regions
+
+SELECT * FROM "youtube-da-raw-db1"."raw_statistics" where region='us';
+
+#Join data raw and cleaned 
+SELECT * FROM "youtube-da-raw-db1"."raw_statistics" a
+inner join "youtube-da-cleaned"."cleaned_statistics_reference_data" b on 
+a.category_id=cast(b.id as int);
+
+#Pull Title, Category id, snippet title 
+SELECT a.title, a.category_id, b.snippet_title FROM "youtube-da-raw-db1"."raw_statistics" a inner join "youtube-da-cleaned"."cleaned_statistics_reference_data" b on a.category_id=cast(b.id as int);
+
+#Pull by region
+SELECT a.title, a.category_id, b.snippet_title FROM "youtube-da-raw-db1"."raw_statistics" a inner join "youtube-da-cleaned"."cleaned_statistics_reference_data" b on a.category_id=cast(b.id as int) where
+region = 'ca';
+
+#without using int cast, changing tables id type to bigint and ran aws lambda again
+SELECT a.title, a.category_id, b.snippet_title FROM "youtube-da-raw-db1"."raw_statistics" a inner join "youtube-da-cleaned"."cleaned_statistics_reference_data" b on a.category_id=b.id where
+region = 'ca';
+
