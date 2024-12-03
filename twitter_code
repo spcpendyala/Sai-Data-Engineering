@@ -1,0 +1,37 @@
+import tweepy
+import pandas as pd
+import json
+from datetime import datetime
+import s3fs
+
+# Replace with your actual credentials
+consumer_key = "d2ecqGLqUEHxhWU2ybFlXFATx"
+consumer_secret = "Stw4K0drIZhC7SZW3YAdNm86wHOIx0wFbtDeYRcp4tp59Kjo5l"
+access_key = "1394714410988539909-eS5X0qA0735kpkozv1RKWKDrrKgcZo"
+access_secret = "qqsgA9kZu8Uvdj0hcAuS4vTAQmjMnolUpDSL8YFNkpvO8"
+
+# Twitter authentication
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_key, access_secret)
+
+# API object 
+api = tweepy.API(auth)
+
+# Verify credentials
+try:
+    api.verify_credentials()
+    print("Authentication OK")
+except:
+    print("Error during authentication")
+
+# Fetch tweets
+tweets = api.user_timeline(screen_name='@NASA', 
+                           count=10,
+                           include_rts=False,
+                           tweet_mode='extended')
+
+for tweet in tweets:
+    print(tweet.full_text)
+
+
+
