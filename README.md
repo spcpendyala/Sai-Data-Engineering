@@ -15,6 +15,12 @@ Apache Spark
 Python
 Databricks
 sql
+Visual code 
+Docker
+Jupyter Notebook
+Azure Data Studio
+Tableau Public
+
 
 
 
